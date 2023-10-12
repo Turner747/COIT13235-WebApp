@@ -1,6 +1,7 @@
 package com.optimed.webapp.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.util.Collection;
@@ -9,6 +10,6 @@ import java.util.Collection;
 public class RoleResponse {
     private long id;
     private String name;
-    @JsonIgnore
+    @JsonProperty("privileges")
     private Collection<PrivilegeResponse> privileges;
 }
