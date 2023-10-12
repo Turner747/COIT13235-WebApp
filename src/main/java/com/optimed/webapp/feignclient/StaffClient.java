@@ -1,6 +1,7 @@
 package com.optimed.webapp.feignclient;
 
 import com.optimed.webapp.response.RoleResponse;
+import com.optimed.webapp.response.ShiftResponse;
 import com.optimed.webapp.response.StaffResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
@@ -21,10 +22,22 @@ public interface StaffClient {
     public ResponseEntity<RoleResponse> getRoleByName(@PathVariable("name") String name);
     @GetMapping("restapi/staffs")
     public ResponseEntity<Collection<StaffResponse>> getAllStaffs();
+    @GetMapping("restapi/staffs/doctors")
+    public ResponseEntity<Collection<StaffResponse>> getAllDoctors();
     @GetMapping("restapi/staffs/id/{id}")
     public ResponseEntity<StaffResponse> getStaffByID(@PathVariable("id") long id);
     @GetMapping("restapi/staffs/email/{email}")
     public ResponseEntity<StaffResponse> getStaffByEmail(@PathVariable("email") String email);
     @PostMapping(value = "restapi/staffs", produces = "application/json", consumes = "application/json")
-    public ResponseEntity<StaffResponse> saveStaff(@RequestBody StaffResponse staff);//, @RequestBody Collection<RoleResponse> roles);
+    public ResponseEntity<StaffResponse> saveStaff(@RequestBody StaffResponse staff);
+    @GetMapping("restapi/shifts")
+    public ResponseEntity<Collection<ShiftResponse>> getAllShifts();
+    @GetMapping("restapi/shifts/id/{id}")
+    public ResponseEntity<ShiftResponse> getShiftById(@PathVariable("id") long id);
+    @PostMapping(value = "restapi/shifts", produces = "application/json", consumes = "application/json")
+    public ResponseEntity<ShiftResponse> saveShift(@RequestBody ShiftResponse shift);
+    @GetMapping(value = "restapi/shifts/delete/{id}")
+    public ResponseEntity<ShiftResponse> deleteShiftById(@PathVariable("id") long id);
+    @GetMapping(value = "restapi/shifts/staff/{id}")
+    public ResponseEntity<Collection<ShiftResponse>> getShiftByStaffId(@PathVariable("id") long id);
 }

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <title>Add Shift</title>
+</head>
+<body>
+<h1>Add Shift</h1>
+<form action="#" th:action="@{/shifts/save}" th:object="${shiftDetail}" method="POST">
+    <table>
+        <tbody>
+            <tr>
+                <td>Staff</td>
+                <td>
+                    <select th:field="*{staff.id}">
+                        <option th:each="staffOption:${allStaffs}" th:value="${staffOption.id}" th:text="${staffOption.firstName + ' ' + staffOption.lastName}"></option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Start Time</td>
+                <td><input type="datetime-local" th:field="*{startTime}" /></td>
+            </tr>
+            <tr>
+                <td>Finish Time</td>
+                <td><input type="datetime-local" th:field="*{finishTime}" /></td>
+            </tr>
+        </tbody>
+    </table>
+    <button type="submit" >Add</button>
+</form>
+
+</body>
+</html>

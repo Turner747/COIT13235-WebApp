@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <title>Shifts</title>
+</head>
+<body>
+<h1>Shift list</h1>
+<table>
+    <thead>
+    <th>ID</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Start Time</th>
+    <th>Finish Time</th>
+    <th>Phone</th>
+    <th>Email</th>
+    <th>Provider No.</th>
+    <th>Prescriber No.</th>
+    <th>Option</th>
+    </thead>
+    <tbody>
+    <tr th:each="shift:${allShifts}">
+        <td th:text="${shift.id}"></td>
+        <td th:text="${shift.staff?.firstName}"></td>
+        <td th:text="${shift.staff?.lastName}"></td>
+        <td th:text="${#dates.format(shift.startTime, 'dd-MM-yyyy HH:mm') }"></td>
+        <td th:text="${#dates.format(shift.finishTime, 'dd-MM-yyyy HH:mm') }"></td>
+        <td th:text="${shift.staff?.phone}"></td>
+        <td th:text="${shift.staff?.email}"></td>
+        <td th:text="${shift.staff?.providerNumber}"></td>
+        <td th:text="${shift.staff?.prescriberNumber}"></td>
+        <td><a th:href="@{/shifts/update/{id}(id=${shift.id})}">Update</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.Date;
 
 @Data
-public class StaffResponse {
+public class StaffResponse implements Comparable<StaffResponse> {
     private long id;
     private String firstName;
     private String lastName;
@@ -23,4 +23,8 @@ public class StaffResponse {
     private String providerNumber;
     private String prescriberNumber;
     private RoleResponse role;
+    @Override
+    public int compareTo(StaffResponse otherStaff) {
+        return this.firstName.compareTo(otherStaff.getFirstName());
+    }
 }

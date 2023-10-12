@@ -9,7 +9,7 @@
 </head>
 <body>
     <h1>Edit Staff</h1>
-    <form action="#" th:action="@{/staffs/save}" th:object="${staff}" method="POST">
+    <form action="#" th:action="@{/staffs/save}" th:object="${staffDetail}" method="POST">
         <input type="hidden" th:field="*{id}" />
         <table>
             <tbody>
@@ -37,6 +37,7 @@
                 <td>State</td>
                 <td>
                     <select th:field="*{state}">
+                        <option value="">Select State</option>
                         <option value="NSW">NSW</option>
                         <option value="VIC">VIC</option>
                         <option value="QLD">QLD</option>

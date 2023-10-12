@@ -18,7 +18,7 @@ public class StaffController {
     private StaffClient staffClient;
     @GetMapping("/register")
     public String registerStaffPage(Model model) {
-        model.addAttribute("staff", new StaffResponse());
+        model.addAttribute("staffDetail", new StaffResponse());
         Collection<RoleResponse> roles = ObjectMapper.mapAll(staffClient.getAllRoles().getBody(), RoleResponse.class);
         model.addAttribute("allRoles", roles);
         return "staffs/register";
@@ -45,13 +45,14 @@ public class StaffController {
     public String updateStaff(@PathVariable("id") long id, Model model) {
         StaffResponse staff = ObjectMapper.map(staffClient.getStaffByID(id).getBody(), StaffResponse.class);
         Collection<RoleResponse> roles = ObjectMapper.mapAll(staffClient.getAllRoles().getBody(), RoleResponse.class);
-        model.addAttribute("staff",staff);
+        model.addAttribute("staffDetail",staff);
         model.addAttribute("allRoles", roles);
         return "staffs/update";
     }
     @GetMapping
     public String listStaff(Model model) {
-        model.addAttribute("allStaffList", ObjectMapper.mapAll(staffClient.getAllStaffs().getBody(), StaffResponse.class));
+        model.addAttribute("allStaffs",
+                ObjectMapper.mapAll(staffClient.getAllStaffs().getBody(), StaffResponse.class));
         return "staffs/list";
     }
 }
