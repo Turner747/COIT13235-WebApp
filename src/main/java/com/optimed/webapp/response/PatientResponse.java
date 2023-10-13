@@ -7,7 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
 @Data
-public class PatientResponse {
+public class PatientResponse implements Comparable<PatientResponse>{
     
     private Long id;
     private String firstName;
@@ -18,13 +18,18 @@ public class PatientResponse {
     private String suburb;
     private String state;
     private String postcode;
-    
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateOfBirth;
-    
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date creationDate;
-    
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date updatedDate;
+
+    @Override
+    public int compareTo(PatientResponse otherPatient) {
+        return this.firstName.compareTo(otherPatient.getFirstName());
+    }
 }
