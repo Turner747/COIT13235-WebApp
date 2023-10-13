@@ -9,7 +9,7 @@
 </head>
 <body>
     <h1>Register new staff</h1>
-    <form action="#" th:action="@{/staffs/save}" th:object="${staffDetail}" method="POST">
+    <form action="#" th:action="@{/staffs/save-new}" th:object="${staffDetail}" method="POST">
         <table>
             <tbody>
                 <tr>
@@ -60,7 +60,7 @@
                 </tr>
                 <tr>
                     <td>Password</td>
-                    <td><input type="password" th:field="*{password}" /></td>
+                    <td><input type="password" th:field="${password}" /></td>
                 </tr>
                 <tr>
                     <td>Provider Number</td>

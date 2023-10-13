@@ -19,7 +19,8 @@ public class StaffResponse implements Comparable<StaffResponse> {
     private String postcode;
     private String phone;
     private String email;
-    private String password;
+//    private String password;
+    private PasswordResponse password;
     private String providerNumber;
     private String prescriberNumber;
     private RoleResponse role;

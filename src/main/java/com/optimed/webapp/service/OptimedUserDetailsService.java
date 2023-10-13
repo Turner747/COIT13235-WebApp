@@ -44,7 +44,7 @@ public class OptimedUserDetailsService implements UserDetailsService {
         }
 
         return new org.springframework.security.core.userdetails.User(
-                staff.getEmail(), staff.getPassword(), true, true, true,
+                staff.getEmail(), staff.getPassword().getPassword(), true, true, true,
                 true, getAuthorities(staff.getRole()));
     }
 
@@ -57,7 +57,6 @@ public class OptimedUserDetailsService implements UserDetailsService {
     private List<String> getPrivileges(RoleResponse role) {
         List<String> privileges = new ArrayList<>();
         RoleResponse roleResponse = ObjectMapper.map(staffClient.getRoleByName(role.getName()).getBody(), RoleResponse.class);
-        System.out.println(roleResponse);
         for(PrivilegeResponse p: roleResponse.getPrivileges())
             privileges.add(p.getName());
         return privileges;
