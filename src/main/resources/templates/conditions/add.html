@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <title>Add Condition</title>
+</head>
+<body>
+<h1>Add Condition</h1>
+<form action="#" th:action="@{/conditions/save}" th:object="${conditionDetail}" method="POST">
+    <table>
+        <tbody>
+            <tr>
+                <td>Patient</td>
+                <td>
+                    <select th:field="*{patient.id}">
+                        <option th:each="patientOption:${allPatients}" th:value="${patientOption.id}" th:text="${patientOption.firstName + ' ' + patientOption.surname}"></option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Doctor</td>
+                <td>
+                    <select th:field="*{staff.id}">
+                        <option th:each="staffOption:${allStaffs}" th:value="${staffOption.id}" th:text="${staffOption.firstName + ' ' + staffOption.lastName}"></option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Diagnosis</td>
+                <td><input type="text" th:field="*{diagnosis}" /> </td>
+            </tr>
+            <tr>
+                <td>Notes</td>
+                <td><input type="text" th:field="*{notes}" /> </td>
+            </tr>
+            <tr>
+                <td>Diagnosis Date</td>
+                <td><input type="date" th:field="*{diagnosisDate}" /></td>
+            </tr>
+        </tbody>
+    </table>
+    <button type="submit" >Add</button>
+</form>
+</body>
+</html>

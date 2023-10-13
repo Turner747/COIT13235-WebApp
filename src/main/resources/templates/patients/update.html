@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <title>Update Patient</title>
+</head>
+<body>
+    <h1>Update Patient</h1>
+    <form action="#" th:action="@{/patients/save}" th:object="${patientDetail}" method="POST">
+        <input type="hidden" th:field="*{id}" />
+        <table>
+            <tbody>
+                <tr>
+                    <td>First Name</td>
+                    <td><input type="text" th:field="*{firstName}" /> </td>
+                </tr>
+                <tr>
+                    <td>Surname</td>
+                    <td><input type="text" th:field="*{surname}" /></td>
+                </tr>
+                <tr>
+                    <td>Date of Birth</td>
+                    <td><input type="date" th:field="*{dateOfBirth}" /></td>
+                </tr>
+                <tr>
+                    <td>Phone Number</td>
+                    <td><input type="tel" th:field="*{phoneNbr}" /> </td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td><input type="email" th:field="*{emailAddress}" /> </td>
+                </tr>
+                <tr>
+                    <td>Street</td>
+                    <td><input type="text" th:field="*{street}" /></td>
+                </tr>
+                <tr>
+                    <td>Suburb</td>
+                    <td><input type="text" th:field="*{suburb}" /></td>
+                </tr>
+                <tr>
+                    <td>State</td>
+                    <td>
+                        <select th:field="*{state}">
+                            <option value="NSW">NSW</option>
+                            <option value="VIC">VIC</option>
+                            <option value="QLD">QLD</option>
+                            <option value="ACT">ACT</option>
+                            <option value="SA">SA</option>
+                            <option value="WA">WA</option>
+                            <option value="NT">NT</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Postcode</td>
+                    <td><input type="text" th:field="*{postcode}" /></td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="submit">Save</button>
+    </form>
+</body>
+</html>

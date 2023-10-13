@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <title>Visit Notes List</title>
+</head>
+<body>
+<h1>Visit Notes List</h1>
+<table>
+    <thead>
+    <th>ID</th>
+    <th>Doctor</th>
+    <th>Patient</th>
+    <th>Content</th>
+    <th>Visit Date</th>
+    <th>Option</th>
+    </thead>
+    <tbody>
+    <tr th:each="visitNote:${allVisitNotes}">
+        <td th:text="${visitNote:$.id}"></td>
+        <<td th:text="${visitNote.patient?.firstName + ' ' + visitNote.patient?.surname}"></td>
+        <td th:text="${visitNote.doctor?.firstName + ' ' + visitNote.doctor?.lastName}"></td>
+        <td th:text="${visitNote.content}"></td>
+        <td th:text="${#dates.format(patient.visitDate, 'dd-MM-yyyy') }"></td>
+        <td><a th:href="@{/visit-notes/update/{id}(id=${visitNote.id})}">Update</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
