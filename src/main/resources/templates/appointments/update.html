@@ -33,10 +33,10 @@
         <tr>
             <td>Status</td>
             <td>
-                <select th:field="*{statusEnum}">
-                    <option value="ACTIVE" th:selected="*{statusEnum} == 'ACTIVE' ? true : false">Active</option>
-                    <option value="CANCELLED" th:selected="*{statusEnum} == 'CANCELLED' ? true : false">Cancel</option>
-                    <option value="RESCHEDULED" th:selected="*{statusEnum} == 'RESCHEDULED' ? true : false">Reschedule</option>
+                <select th:field="*{status}">
+                    <option value="ACTIVE" th:selected="*{status} == 'ACTIVE' ? true : false">Active</option>
+                    <option value="CANCELLED" th:selected="*{status} == 'CANCELLED' ? true : false">Cancel</option>
+                    <option value="RESCHEDULED" th:selected="*{status} == 'RESCHEDULED' ? true : false">Reschedule</option>
                 </select>
             </td>
         </tr>

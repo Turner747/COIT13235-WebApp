@@ -16,5 +16,5 @@ public class AppointmentResponse {
     private Date startTime;
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private Date finishTime;
-    private String statusEnum;
+    private String status;
 }
