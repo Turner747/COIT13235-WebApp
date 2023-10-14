@@ -9,12 +9,16 @@ import java.util.Date;
 public class ConditionResponse {
     
     private Long id;
+    
+    @JsonProperty("doctor")
     private StaffResponse doctor;
+    
+    @JsonProperty("patient")
     private PatientResponse patient;
+    
     private String diagnosis;
     private String notes;
   
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date diagnosisDate;
-
 }
