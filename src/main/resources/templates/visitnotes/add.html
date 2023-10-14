@@ -15,16 +15,16 @@
                 <tr>
                     <td>Doctor</td>
                     <td>
-                        <select th:field="*{staff.id}">
-                            <option th:each="staffOption:${allDoctors}" th:value="${staffOption.id}" th:text="${staffOption.firstName + ' ' + staffOption.lastName}"></option>
-                        </select>
+                    <select th:field="*{staff.id}">
+                        <option th:each="staffOption:${allDoctors}" th:value="${staffOption.id}" th:text="${staffOption.firstName + ' ' + staffOption.lastName}"></option>
+                    </select>
                     </td>
                 </tr>
                 <tr>
                     <td>Patient</td>
                     <td>
                         <select th:field="*{patient.id}">
-                            <option th:each="patientOption:${allPatients}" th:value="${patientOption.id}" th:text="${patientOption.firstName + ' ' + patientOption.surname}"></option>
+                            <option th:each="patientOption:${allPatients}" th:field="*{role.id}" th:value="${patientOption.id}"></option>
                         </select>
                     </td>
                 </tr>

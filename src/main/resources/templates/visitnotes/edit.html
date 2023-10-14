@@ -12,13 +12,13 @@
     <form action="#" th:action="@{/visit-notes/save}" th:object="${visitNoteDetail}" method="POST">
         <input type="hidden" th:field="*{id}" />
         <input type="hidden" th:field="*{patient.id}" />
-        <input type="hidden" th:field="*{staff.id}" />
+        <input type="hidden" th:field="*{doctor.id}" />
         <table>
             <tbody>
                 <tr>
                     <td>Doctor</td>
                     <td>
-                        <select th:field="*{staff.id}">
+                        <select th:field="*{doctor.id}">
                             <option th:each="staffOption:${allDoctors}" th:value="${staffOption.id}" th:text="${staffOption.firstName + ' ' + staffOption.lastName}"></option>
                         </select>
                     </td>

@@ -21,11 +21,12 @@
     <tbody>
     <tr th:each="visitNote:${allVisitNotes}">
         <td th:text="${visitNote:$.id}"></td>
-        <<td th:text="${visitNote.patient?.firstName + ' ' + visitNote.patient?.surname}"></td>
         <td th:text="${visitNote.doctor?.firstName + ' ' + visitNote.doctor?.lastName}"></td>
+        <<td th:text="${visitNote.patient?.id}"></td>
         <td th:text="${visitNote.content}"></td>
         <td th:text="${#dates.format(patient.visitDate, 'dd-MM-yyyy') }"></td>
         <td><a th:href="@{/visit-notes/update/{id}(id=${visitNote.id})}">Update</a></td>
+        <td><a th:href="@{/visit-notes/delete/{id}(id=${visitNote.id})}">Delete</a></td>
     </tr>
     </tbody>
 </table>
