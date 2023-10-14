@@ -9,8 +9,13 @@ import java.util.Date;
 public class VisitNoteResponse {
     
     private Long id;
+    
+    @JsonProperty("doctor")
     private StaffResponse doctor;
+    
+    @JsonProperty("patient")
     private PatientResponse patient;
+        
     private String content;
     
     @DateTimeFormat(pattern = "yyyy-MM-dd")
