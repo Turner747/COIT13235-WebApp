@@ -27,10 +27,24 @@ public class VisitNoteController {
     private PatientClient patientClient;
     
     @Autowired
-    StaffClient staffClient;
+    private StaffClient staffClient;
+   
+    @GetMapping("/add")
+    public String addVisitNote(Model model) {
+        
+        model.addAttribute("visitNoteDetail", new VisitNoteResponse());
+        
+        Collection<PatientResponse> patients = ObjectMapper.mapAll(patientClient.getAllPatients().getBody(), PatientResponse.class);
+        model.addAttribute("allPatients", patients);
+        
+        Collection<StaffResponse> doctors = ObjectMapper.mapAll(staffClient.getAllStaffs().getBody(), StaffResponse.class);
+        model.addAttribute("allDoctors", doctors);
+        
+        return "visit-notes/add";
+    }
     
     @PostMapping(value = "/save", consumes = "*/*")
-    public String saveVisitNote(@ModelAttribute("visitNoteDetail") VisitNoteResponse visitNote,
+    public String saveVisitNote(@ModelAttribute("visitNote") VisitNoteResponse visitNote,
                             Model model) {
         try {
             patientClient.saveVisitNote(visitNote);
@@ -41,18 +55,7 @@ public class VisitNoteController {
         return "redirect:/visit-notes";
     }
     
-    @GetMapping("/add/{id}")
-    public String addVisitNote(@PathVariable("id") Long id, Model model) {
-        PatientResponse patient = ObjectMapper.map(patientClient.getPatientById(id).getBody(), PatientResponse.class);
-        StaffResponse doctor = ObjectMapper.map(staffClient.getStaffByID(id).getBody(), StaffResponse.class);
-        
-        model.addAttribute("visitNoteDetail", new VisitNoteResponse());
-        model.addAttribute("patientDetail", patient);
-        model.addAttribute("staffDetails", doctor);
-        
-        return "visit-notes/add";
-    }
-    
+    /*
     @GetMapping("/select-doctor")
     public String selectDoctor(Model model) {
         List<StaffResponse> doctors = ObjectMapper.mapAll(staffClient.getAllDoctors().getBody(), StaffResponse.class);
@@ -76,17 +79,19 @@ public class VisitNoteController {
        // model.addAttribute("allShifts", shifts);
         return "visit-notes/select-patient";
     }
+*/
     
     @GetMapping("/update/{id}")
     public String updateVisitNote(@PathVariable("id") Long id, Model model) {
-        VisitNoteResponse visitNote = ObjectMapper.map(patientClient.getVisitNoteById(id).getBody(), VisitNoteResponse.class);
-                
-        PatientResponse patient = ObjectMapper.map(patientClient.getPatientById(visitNote.getPatient().getId()).getBody(), PatientResponse.class);
-        StaffResponse doctor = ObjectMapper.map(staffClient.getStaffByID(visitNote.getDoctor().getId()).getBody(), StaffResponse.class);
         
+        VisitNoteResponse visitNote = ObjectMapper.map(patientClient.getVisitNoteById(id).getBody(), VisitNoteResponse.class);
         model.addAttribute("visitNoteDetail", visitNote);
-        model.addAttribute("patientDetail", patient);
-        model.addAttribute("staffDetails", doctor);
+        
+        Collection<PatientResponse> patients = ObjectMapper.mapAll(patientClient.getAllPatients().getBody(), PatientResponse.class);
+        model.addAttribute("allPatients", patients);
+        
+        Collection<StaffResponse> doctors = ObjectMapper.mapAll(staffClient.getAllStaffs().getBody(), StaffResponse.class);
+        model.addAttribute("allDoctors", doctors);
         
         return "visit-notes/update";
     }
