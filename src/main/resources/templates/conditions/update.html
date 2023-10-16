@@ -1,0 +1,39 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Edit Condition</title>
+</head>
+<body layout:fragment="body" >
+<h1>Edit Condition</h1>
+<div>
+    Patient: <span th:text=" ' ' + ${conditionDetail.patient.firstName + ' ' + conditionDetail.patient.surname}"></span>
+</div>
+<div>
+    Doctor: <span th:text=" ' ' + ${conditionDetail.doctor.firstName + ' ' + conditionDetail.doctor.lastName}"></span>
+</div>
+<form action="#" th:action="@{/conditions/save}" th:object="${conditionDetail}" method="POST">
+    <input type="hidden" th:field="*{id}" />
+    <input type="hidden" th:field="*{patient.id}" />
+    <input type="hidden" th:field="*{doctor.id}" />
+    <table>
+        <tbody>
+            <tr>
+                <td>Diagnosis</td>
+                <td><input type="text" th:field="*{diagnosis}" /> </td>
+            </tr>
+            <tr>
+                <td>Notes</td>
+                <td><textarea th:field="*{notes}" rows="5" cols="50" ></textarea> </td>
+            </tr>
+            <tr>
+                <td>Diagnosis Date</td>
+                <td><input type="date" th:field="*{diagnosisDate}" /></td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="btn btn-primary m-1" type="submit" >Save</button>
+</form>
+<a class="btn btn-warning m-1" th:href="@{/conditions/delete/{id}(id=${conditionDetail.id})}">Delete this condition</a>
+</body>
+</html>

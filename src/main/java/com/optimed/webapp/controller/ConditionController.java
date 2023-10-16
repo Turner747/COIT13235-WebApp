@@ -43,18 +43,6 @@ public class ConditionController {
         return "redirect:/conditions";
     }
     
-    @GetMapping("/add/{id}")
-    public String addCondition(@PathVariable("id") Long id, Model model) {
-        PatientResponse patient = ObjectMapper.map(patientClient.getPatientById(id).getBody(), PatientResponse.class);
-        StaffResponse doctor = ObjectMapper.map(staffClient.getStaffByID(id).getBody(), StaffResponse.class);
-        
-        model.addAttribute("conditionDetail", new ConditionResponse());
-        model.addAttribute("patientDetail", patient);
-        model.addAttribute("staffDetails", doctor);
-        
-        return "conditions/add";
-    }
-    
     @GetMapping("/add")
     public String addConditions(Model model) {
         List<PatientResponse> patients = ObjectMapper.mapAll(patientClient.getAllPatients().getBody(), PatientResponse.class);
@@ -73,14 +61,8 @@ public class ConditionController {
     @GetMapping("/update/{id}")
     public String updateCondition(@PathVariable("id") Long id, Model model) {
         ConditionResponse condition = ObjectMapper.map(patientClient.getConditionById(id).getBody(), ConditionResponse.class);
-                
-        PatientResponse patient = ObjectMapper.map(patientClient.getPatientById(condition.getPatient().getId()).getBody(), PatientResponse.class);
-        StaffResponse doctor = ObjectMapper.map(staffClient.getStaffByID(condition.getDoctor().getId()).getBody(), StaffResponse.class);
-        
+
         model.addAttribute("conditionDetail", condition);
-        model.addAttribute("patientDetail", patient);
-        model.addAttribute("staffDetails", doctor);
-        
         return "conditions/update";
     }
     
