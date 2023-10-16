@@ -37,7 +37,7 @@ public class VisitNoteController {
         Collection<PatientResponse> patients = ObjectMapper.mapAll(patientClient.getAllPatients().getBody(), PatientResponse.class);
         model.addAttribute("allPatients", patients);
         
-        Collection<StaffResponse> doctors = ObjectMapper.mapAll(staffClient.getAllStaffs().getBody(), StaffResponse.class);
+        Collection<StaffResponse> doctors = ObjectMapper.mapAll(staffClient.getAllDoctors().getBody(), StaffResponse.class);
         model.addAttribute("allDoctors", doctors);
         
         return "visitnotes/add";
@@ -54,32 +54,7 @@ public class VisitNoteController {
         }
         return "redirect:/visitnotes";
     }
-    
-    /*
-    @GetMapping("/select-doctor")
-    public String selectDoctor(Model model) {
-        List<StaffResponse> doctors = ObjectMapper.mapAll(staffClient.getAllDoctors().getBody(), StaffResponse.class);
-        Collections.sort(doctors);
-        //List<ShiftResponse> shifts = new ArrayList<ShiftResponse>();
-        //for(StaffResponse doctor : doctors) {
-        //    shifts.addAll( ObjectMapper.mapAll(staffClient.getShiftByStaffId(doctor.getId()).getBody(), ShiftResponse.class) );
-        //}
-        //model.addAttribute("allShifts", shifts);
-        return "visit-notes/select-doctor";
-    }
-    
-    @GetMapping("/select-patient")
-    public String selectPatient(Model model) {
-        List<PatientResponse> patients = ObjectMapper.mapAll(patientClient.getAllPatients().getBody(), PatientResponse.class);
-        //Collections.sort(patients);
-        //List<ShiftResponse> shifts = new ArrayList<ShiftResponse>();
-        //for(StaffResponse doctor : doctors) {
-        //    shifts.addAll( ObjectMapper.mapAll(staffClient.getShiftByStaffId(doctor.getId()).getBody(), ShiftResponse.class) );
-        //}
-       // model.addAttribute("allShifts", shifts);
-        return "visit-notes/select-patient";
-    }
-*/
+
     
     @GetMapping("/update/{id}")
     public String updateVisitNote(@PathVariable("id") Long id, Model model) {
@@ -90,7 +65,7 @@ public class VisitNoteController {
         Collection<PatientResponse> patients = ObjectMapper.mapAll(patientClient.getAllPatients().getBody(), PatientResponse.class);
         model.addAttribute("allPatients", patients);
         
-        Collection<StaffResponse> doctors = ObjectMapper.mapAll(staffClient.getAllStaffs().getBody(), StaffResponse.class);
+        Collection<StaffResponse> doctors = ObjectMapper.mapAll(staffClient.getAllDoctors().getBody(), StaffResponse.class);
         model.addAttribute("allDoctors", doctors);
         
         return "visitnotes/edit";
