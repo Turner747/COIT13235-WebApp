@@ -41,6 +41,9 @@ public class StaffController {
     public String saveStaff(@ModelAttribute("staff") StaffResponse staff,
                             Model model) {
         try {
+            System.out.println(staff);
+            PasswordResponse password = ObjectMapper.map(staffClient.getPasswordById(staff.getPassword().getId()).getBody(), PasswordResponse.class);
+            staff.setPassword(password);
             staffClient.saveStaff(staff);
         } catch(Exception e) {
             model.addAttribute("errorMessage",e.getMessage());

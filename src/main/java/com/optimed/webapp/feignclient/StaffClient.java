@@ -1,5 +1,6 @@
 package com.optimed.webapp.feignclient;
 
+import com.optimed.webapp.response.PasswordResponse;
 import com.optimed.webapp.response.RoleResponse;
 import com.optimed.webapp.response.ShiftResponse;
 import com.optimed.webapp.response.StaffResponse;
@@ -42,4 +43,6 @@ public interface StaffClient {
     public ResponseEntity<Collection<ShiftResponse>> getShiftByStaffId(@PathVariable("id") long id);
     @GetMapping(value = "restapi/staffs/delete/{id}")
     public ResponseEntity<StaffResponse> deleteStaffById(@PathVariable("id") long id);
+    @GetMapping(value = "restapi/staffs/password/{id}")
+    public ResponseEntity<PasswordResponse> getPasswordById(@PathVariable("id") long id);
 }
