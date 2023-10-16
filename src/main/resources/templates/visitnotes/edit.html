@@ -6,40 +6,33 @@
 </head>
 <body layout:fragment="body" >
     <h1>Edit Visit Note</h1>
-    <form action="#" th:action="@{/visit-notes/save}" th:object="${visitNoteDetail}" method="POST">
+    <form action="#" th:action="@{/visitnotes/save}" th:object="${visitNoteDetail}" method="POST">
         <input type="hidden" th:field="*{id}" />
         <input type="hidden" th:field="*{patient.id}" />
         <input type="hidden" th:field="*{doctor.id}" />
-        <table>
-            <tbody>
-                <tr>
-                    <td>Doctor</td>
-                    <td>
-                        <select th:field="*{doctor.id}">
-                            <option th:each="staffOption:${allDoctors}" th:value="${staffOption.id}" th:text="${staffOption.firstName + ' ' + staffOption.lastName}"></option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Patient</td>
-                    <td>
-                        <select th:field="*{patient.id}">
-                            <option th:each="patientOption:${allPatients}" th:value="${patientOption.id}" th:text="${patientOption.firstName + ' ' + patientOption.surname}"></option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Content</td>
-                    <td><input type="text" th:field="*{content}" /></td>
-                </tr>
-                <tr>
-                    <td>Visit Date</td>
-                    <td><input type="date" th:field="*{visitDate}" /></td>
-                </tr>
-            </tbody>
-        </table>
-        <button type="submit">Save</button>
+        <div class="mb-3 w-50">
+            <label class="form-label" for="doctor-name">Doctor</label>
+            <input id="doctor-name" class="form-control" type="text" th:value="${visitNoteDetail.doctor?.firstName} + ' ' + ${visitNoteDetail.doctor?.lastName}" disabled readonly>
+        </div>
+
+        <div class="mb-3 w-50">
+            <label class="form-label" for="patient-name">Patient</label>
+            <input id="patient-name" class="form-control" type="text" th:value="${visitNoteDetail.patient?.firstName} + ' ' + ${visitNoteDetail.patient?.surname}" disabled readonly>
+        </div>
+
+        <div class="mb-3 w-50">
+            <label class="form-label" for="content">Content</label>
+            <textarea class="form-control" id="content" type="text" th:field="*{content}" rows="7"></textarea>
+        </div>
+
+        <div class="mb-3 w-50">
+            <label class="form-label" for="visit-date">Visit Date</label>
+            <input class="form-control" id="visit-date" type="date" th:field="*{visitDate}" />
+        </div>
+
+        <div class="mb-3 w-50">
+            <button class="btn btn-primary" type="submit">Update</button>
+        </div>
     </form>
-    <a th:href="@{/visit-notes/delete/{id}(id=${visitNoteDetail.id})}">Delete this visit note</a>
 </body>
 </html>

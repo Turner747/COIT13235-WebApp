@@ -6,36 +6,36 @@
 </head>
 <body layout:fragment="body" >
     <h1>Add Visit Note</h1>
-    <form action="#" th:action="@{/visit-notes/save}" th:object="${visitNoteDetail}" method="POST">
-        <table>
-            <tbody>
-                <tr>
-                    <td>Doctor</td>
-                    <td>
-                    <select th:field="*{staff.id}">
-                        <option th:each="staffOption:${allDoctors}" th:value="${staffOption.id}" th:text="${staffOption.firstName + ' ' + staffOption.lastName}"></option>
-                    </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Patient</td>
-                    <td>
-                        <select th:field="*{patient.id}">
-                            <option th:each="patientOption:${allPatients}" th:field="*{role.id}" th:value="${patientOption.id}"></option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Content</td>
-                    <td><input type="text" th:field="*{content}" /></td>
-                </tr>
-                <tr>
-                    <td>Visit Date</td>
-                    <td><input type="date" th:field="*{visitDate}" /></td>
-                </tr>
-            </tbody>
-        </table>
-        <button type="submit">Add</button>
+    <form action="#" th:action="@{/visitnotes/save}" th:object="${visitNoteDetail}" method="POST">
+
+        <div class="mb-3 w-50">
+            <label class="form-label" for="doctor-select">Doctor</label>
+            <select class="form-select" id="doctor-select" th:field="*{doctor.id}">
+                <option th:each="staffOption:${allDoctors}" th:value="${staffOption.id}" th:text="${staffOption.firstName + ' ' + staffOption.lastName}"></option>
+            </select>
+        </div>
+
+        <div class="mb-3 w-50">
+            <label class="form-label" for="patient-select">Patient</label>
+            <select class="form-select" id="patient-select" th:field="*{patient.id}">
+                <option th:each="patientOption:${allPatients}" th:text="${patientOption.firstName + ' ' + patientOption.surname}" th:value="${patientOption.id}"></option>
+            </select>
+        </div>
+
+        <div class="mb-3 w-50">
+            <label class="form-label" for="content">Content</label>
+            <textarea class="form-control" id="content" type="text" th:field="*{content}" rows="7"></textarea>
+        </div>
+
+        <div class="mb-3 w-50">
+            <label class="form-label" for="visit-date">Visit Date</label>
+            <input class="form-control" id="visit-date" type="date" th:field="*{visitDate}" />
+        </div>
+
+        <div class="mb-3 w-50">
+            <button class="btn btn-primary" type="submit">Add</button>
+        </div>
+
     </form>
 </body>
 </html>

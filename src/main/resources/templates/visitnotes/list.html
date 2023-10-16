@@ -28,8 +28,8 @@
         <td th:text="${visitNote.content}"></td>
         <td th:text="${#dates.format(visitNote.visitDate, 'dd-MM-yyyy') }"></td>
         <td>
-            <a class="btn btn-warning" th:href="@{/visit-notes/update/{id}(id=${visitNote.id})}">Update</a>
-            <a class="btn btn-danger" th:href="@{/visit-notes/delete/{id}(id=${visitNote.id})}">Delete</a>
+            <a class="btn btn-warning" th:href="@{/visitnotes/update/{id}(id=${visitNote.id})}">Update</a>
+            <a class="btn btn-danger" th:href="@{/visitnotes/delete/{id}(id=${visitNote.id})}">Delete</a>
         </td>
     </tr>
     </tbody>

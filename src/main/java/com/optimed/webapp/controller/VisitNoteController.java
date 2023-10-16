@@ -93,13 +93,13 @@ public class VisitNoteController {
         Collection<StaffResponse> doctors = ObjectMapper.mapAll(staffClient.getAllStaffs().getBody(), StaffResponse.class);
         model.addAttribute("allDoctors", doctors);
         
-        return "visitnotes/update";
+        return "visitnotes/edit";
     }
     
     @GetMapping("delete/{id}")
     public String deleteVisitNote(@PathVariable("id") Long id) {
         patientClient.deleteVisitNoteById(id);
-        return "redirect:/visit-notes";
+        return "redirect:/visitnotes";
     }
     
     @GetMapping
