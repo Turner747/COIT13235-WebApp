@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE"></title>
+</head>
+
+<!--nav-->
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <!-- Navbar Brand-->
+    <a class="navbar-brand ps-3" th:href="@{/}">Optimed</a>
+    <!-- Sidebar Toggle-->
+    <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
+            id="sidebarToggle"
+            href="#!">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <ul class="navbar-nav ms-auto me-0 me-md-3 my-2 my-md-0">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle"
+               id="navbarDropdown"
+               href="#"
+               role="button"
+               data-bs-toggle="dropdown"
+               aria-expanded="false">
+                <i class="fas fa-user fa-fw"></i>
+            </a>
+
+            <ul class="dropdown-menu dropdown-menu-end"
+                aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" th:href="@{/staffs/update/username/{username}(username=${#authentication.name})}">Edit profile</a></li>
+                <li>
+                    <form th:action="@{/logout}" method="post">
+                        <input class="dropdown-item" type="submit" value="Logout" th:value="Logout" />
+                    </form>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+
+<div id="layoutSidenav">
+    <div id="layoutSidenav_nav">
+        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+            <div class="sb-sidenav-menu">
+                <div class="nav">
+                    <div class="sb-sidenav-menu-heading">Manage</div>
+                    <a class="nav-link" th:href="@{/patients}">
+                        <div class="sb-nav-link-icon">
+                            <i class="fa-solid fa-person"></i>
+                        </div>
+                        Patients
+                    </a>
+                    <a class="nav-link" th:href="@{/appointments}">
+                        <div class="sb-nav-link-icon">
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </div>
+                        Appointments
+                    </a>
+                    <a class="nav-link" th:href="@{/shifts}">
+                        <div class="sb-nav-link-icon">
+                            <i class="fa-regular fa-calendar"></i>
+                        </div>
+                        Shifts
+                    </a>
+                    <a class="nav-link" th:href="@{/visitnotes}">
+                        <div class="sb-nav-link-icon">
+                            <i class="fa-solid fa-notes-medical"></i>
+                        </div>
+                        Visit Notes
+                    </a>
+                    <a class="nav-link" th:href="@{/conditions}">
+                        <div class="sb-nav-link-icon">
+                            <i class="fa-solid fa-suitcase-medical"></i>
+                        </div>
+                        Conditions
+                    </a>
+
+                    <div sec:authorize="hasRole('ROLE_ADMIN')" >
+                    <div class="sb-sidenav-menu-heading">Admin</div>
+                    <a class="nav-link" th:href="@{/staffs}">
+                        <div class="sb-nav-link-icon">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        Staff
+                    </a>
+                    </div>
+                </div>
+            </div>
+            <div class="sb-sidenav-footer" sec:authorize="isAuthenticated()">
+                <div class="small">Logged in as:</div>
+                <span sec:authentication="name"></span>
+            </div>
+        </nav>
+    </div>
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+
+                <body layout:fragment="body">
+                    <!-- views populate here -->
+                </body>
+
+            </div>
+        </main>
+        <footer class="py-4 bg-light mt-auto">
+            <div class="container-fluid px-4">
+                <div class="d-flex align-items-center justify-content-between small">
+                    <div class="text-muted">Copyright &copy; JSK 2023</div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+
+<script th:src="@{/js/script.js}"></script>
+</html>

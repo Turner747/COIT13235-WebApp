@@ -33,8 +33,8 @@ public class OptimedUserDetailsService implements UserDetailsService {
         if (staff == null) {
             return new org.springframework.security.core.userdetails
                     .User(
-                    " ",
-                    " ",
+                    "",
+                    "",
                     true,
                     true,
                     true,

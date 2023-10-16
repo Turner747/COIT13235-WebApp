@@ -63,7 +63,7 @@ public class StaffController {
         }
         return "redirect:/staffs";
     }
-    @GetMapping("/update/{id}")
+    @GetMapping("/update/id/{id}")
     public String updateStaff(@PathVariable("id") long id, Model model) {
         StaffResponse staff = ObjectMapper.map(staffClient.getStaffByID(id).getBody(), StaffResponse.class);
         Collection<RoleResponse> roles = ObjectMapper.mapAll(staffClient.getAllRoles().getBody(), RoleResponse.class);
@@ -71,6 +71,16 @@ public class StaffController {
         model.addAttribute("allRoles", roles);
         return "staffs/update";
     }
+
+    @GetMapping("/update/username/{username}")
+    public String updateStaff(@PathVariable("username") String username, Model model) {
+        StaffResponse staff = ObjectMapper.map(staffClient.getStaffByEmail(username).getBody(), StaffResponse.class);
+        Collection<RoleResponse> roles = ObjectMapper.mapAll(staffClient.getAllRoles().getBody(), RoleResponse.class);
+        model.addAttribute("staffDetail",staff);
+        model.addAttribute("allRoles", roles);
+        return "staffs/update";
+    }
+
     @GetMapping
     public String listStaff(Model model) {
         model.addAttribute("allStaffs",
