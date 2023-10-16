@@ -70,8 +70,5 @@ public class OptimedUserDetailsService implements UserDetailsService {
         }
         return authorities;
     }
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+
 }

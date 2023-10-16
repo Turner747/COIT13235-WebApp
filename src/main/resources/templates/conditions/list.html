@@ -29,7 +29,10 @@
         <td th:text="${condition.diagnosis}"></td>
         <td th:text="${condition.notes}"></td>
         <td th:text="${#dates.format(condition.diagnosisDate, 'dd-MM-yyyy') }"></td>
-        <td><a class="btn btn-warning m-1" th:href="@{/conditions/update/{id}(id=${condition.id})}">Update</a></td>
+        <td>
+            <a class="btn btn-warning m-1" th:href="@{/conditions/update/{id}(id=${condition.id})}">Update</a>
+            <a class="btn btn-danger m-1" th:href="@{/conditions/delete/{id}(id=${condition.id})}">Delete</a>
+        </td>
     </tr>
     </tbody>
 </table>
