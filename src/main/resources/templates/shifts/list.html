@@ -5,19 +5,25 @@
     <title>Shifts</title>
 </head>
 <body layout:fragment="body" >
-<h1>Shift list</h1>
-<table>
+
+<h1>Shifts</h1>
+
+<a class="btn btn-primary m-1" th:href="@{/shifts/add}">
+    Add Shift
+</a>
+
+<table class="table table-striped">
     <thead>
-    <th>ID</th>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Start Time</th>
-    <th>Finish Time</th>
-    <th>Phone</th>
-    <th>Email</th>
-    <th>Provider No.</th>
-    <th>Prescriber No.</th>
-    <th>Option</th>
+    <th scope="col">ID</th>
+    <th scope="col">First Name</th>
+    <th scope="col">Last Name</th>
+    <th scope="col">Start Time</th>
+    <th scope="col">Finish Time</th>
+    <th scope="col">Phone</th>
+    <th scope="col">Email</th>
+    <th scope="col">Provider No.</th>
+    <th scope="col">Prescriber No.</th>
+    <th scope="col">Options</th>
     </thead>
     <tbody>
     <tr th:each="shift:${allShifts}">
@@ -30,7 +36,10 @@
         <td th:text="${shift.staff?.email}"></td>
         <td th:text="${shift.staff?.providerNumber}"></td>
         <td th:text="${shift.staff?.prescriberNumber}"></td>
-        <td><a th:href="@{/shifts/update/{id}(id=${shift.id})}">Update</a></td>
+        <td>
+            <a class="btn btn-warning m-1" th:href="@{/shifts/update/{id}(id=${shift.id})}">Update</a>
+            <a class="btn btn-danger m-1" th:href="@{/shifts/delete/{id}(id=${shift.id})}">Delete</a>
+        </td>
     </tr>
     </tbody>
 </table>

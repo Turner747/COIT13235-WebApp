@@ -7,27 +7,26 @@
 <body layout:fragment="body" >
 <h1>Add Shift</h1>
 <form action="#" th:action="@{/shifts/save}" th:object="${shiftDetail}" method="POST">
-    <table>
-        <tbody>
-            <tr>
-                <td>Staff</td>
-                <td>
-                    <select th:field="*{staff.id}">
-                        <option th:each="staffOption:${allStaffs}" th:value="${staffOption.id}" th:text="${staffOption.firstName + ' ' + staffOption.lastName}"></option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>Start Time</td>
-                <td><input type="datetime-local" th:field="*{startTime}" /></td>
-            </tr>
-            <tr>
-                <td>Finish Time</td>
-                <td><input type="datetime-local" th:field="*{finishTime}" /></td>
-            </tr>
-        </tbody>
-    </table>
-    <button type="submit" >Add</button>
+    <div class="mb-3 w-50">
+        <label class="form-label" for="staff-select">Staff</label>
+        <select class="form-select" id="staff-select" th:field="*{staff.id}">
+            <option th:each="staffOption:${allStaffs}" th:value="${staffOption.id}" th:text="${staffOption.firstName + ' ' + staffOption.lastName}"></option>
+        </select>
+    </div>
+
+    <div class="mb-3 w-50">
+        <label class="form-label" for="start-time">Start time</label>
+        <input class="form-control" id="start-time" type="datetime-local" th:field="*{startTime}" />
+    </div>
+
+    <div class="mb-3 w-50">
+        <label class="form-label" for="finish-time">Finish time</label>
+        <input class="form-control" id="finish-time" type="datetime-local" th:field="*{finishTime}" />
+    </div>
+
+    <div class="mb-3 w-50">
+        <button class="btn btn-primary" type="submit" >Add</button>
+    </div>
 </form>
 
 </body>

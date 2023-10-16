@@ -6,26 +6,31 @@
 </head>
 <body layout:fragment="body" >
 <h1>Edit Shift</h1>
-<div>
-     Staff name: <span th:text="' ' + ${shiftDetail.staff?.firstName} + ' ' + ${shiftDetail.staff?.lastName}"></span>
-</div>
+
 <form action="#" th:action="@{/shifts/save}" th:object="${shiftDetail}" method="POST">
     <input type="hidden" th:field="*{id}" />
     <input type="hidden" th:field="*{staff.id}" />
-    <table>
-        <tbody>
-        <tr>
-            <td>Start Time</td>
-            <td><input type="datetime-local" th:field="*{startTime}" /> </td>
-        </tr>
-        <tr>
-            <td>Finish Time</td>
-            <td><input type="datetime-local" th:field="*{finishTime}" /></td>
-        </tr>
-        </tbody>
-    </table>
-    <button type="submit" >Save</button>
+
+    <div class="mb-3 w-50">
+        <label class="form-label" for="staff-name">Staff</label>
+        <input id="staff-name" class="form-control" type="text" th:value="${shiftDetail.staff?.firstName} + ' ' + ${shiftDetail.staff?.lastName}" disabled readonly>
+    </div>
+
+    <div class="mb-3 w-50">
+        <label class="form-label" for="start-time">Start time</label>
+        <input class="form-control" id="start-time" type="datetime-local" th:field="*{startTime}" />
+    </div>
+
+    <div class="mb-3 w-50">
+        <label class="form-label" for="finish-time">Finish time</label>
+        <input class="form-control" id="finish-time" type="datetime-local" th:field="*{finishTime}" />
+    </div>
+
+    <div class="mb-3 w-50">
+        <button class="btn btn-primary" type="submit" >Save</button>
+    </div>
+
 </form>
-<a th:href="@{/shifts/delete/{id}(id=${shiftDetail.id})}">Delete this shift</a>
+
 </body>
 </html>
