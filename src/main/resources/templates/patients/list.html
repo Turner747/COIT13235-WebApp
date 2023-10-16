@@ -6,19 +6,24 @@
 </head>
 <body layout:fragment="body" >
     <h1>Patient List</h1>
-    <table>
+
+    <a class="btn btn-primary m-1" th:href="@{/patients/register}">
+        Add Patient
+    </a>
+
+    <table class="table table-striped">
         <thead>
-            <th>ID</th>
-            <th>First Name</th>
-            <th>Surname</th>
-            <th>DOB</th>
-            <th>Phone</th>
-            <th>Email</th>
-            <th>Street</th>
-            <th>Suburb</th>
-            <th>State</th>
-            <th>Postcode</th>
-            <th>Option</th>
+            <th scope="col">ID</th>
+            <th scope="col">First name</th>
+            <th scope="col">Surname</th>
+            <th scope="col">DOB</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Email</th>
+            <th scope="col">Street</th>
+            <th scope="col">Suburb</th>
+            <th scope="col">State</th>
+            <th scope="col">Postcode</th>
+            <th scope="col">Option</th>
         </thead>
         <tbody>
             <tr th:each="patient:${allPatients}">
@@ -32,7 +37,9 @@
                 <td th:text="${patient.suburb}"></td>
                 <td th:text="${patient.state}"></td>
                 <td th:text="${patient.postcode}"></td>
-                <td><a th:href="@{/patients/update/{id}(id=${patient.id})}">Update</a></td>
+                <td>
+                    <a class="btn btn-warning m-1"  th:href="@{/patients/update/{id}(id=${patient.id})}">Update</a>
+                </td>
             </tr>
         </tbody>
     </table>

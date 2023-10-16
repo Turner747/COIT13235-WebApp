@@ -1,0 +1,13 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Error - Patient</title>
+</head>
+<body layout:fragment="body" >
+<h1>Patient Error</h1>
+<div th:text="${errorMessage}">
+</div>
+<p>Could not save changes</p>
+</body>
+</html>

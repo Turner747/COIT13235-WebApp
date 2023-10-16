@@ -11,7 +11,7 @@ public class PatientResponse implements Comparable<PatientResponse>{
     
     private Long id;
     private String firstName;
-    private String lastName;
+    private String surname;
     private String phoneNbr;
     private String emailAddress;
     private String street;

@@ -7,57 +7,63 @@
 <body layout:fragment="body" >
     <h1>Register Patient</h1>
     <form action="#" th:action="@{/patients/save}" th:object="${patientDetail}" method="POST">
-        <table>
-            <tbody>
-                <tr>
-                    <td>First Name</td>
-                    <td><input type="text" th:field="*{firstName}" /> </td>
-                </tr>
-                <tr>
-                    <td>Surname</td>
-                    <td><input type="text" th:field="*{surname}" /></td>
-                </tr>
-                <tr>
-                    <td>Date of Birth</td>
-                    <td><input type="date" th:field="*{dateOfBirth}" /></td>
-                </tr>
-                <tr>
-                    <td>Phone Number</td>
-                    <td><input type="tel" th:field="*{phoneNbr}" /> </td>
-                </tr>
-                <tr>
-                    <td>Email</td>
-                    <td><input type="email" th:field="*{emailAddress}" /> </td>
-                </tr>
-                <tr>
-                    <td>Street</td>
-                    <td><input type="text" th:field="*{street}" /></td>
-                </tr>
-                <tr>
-                    <td>Suburb</td>
-                    <td><input type="text" th:field="*{suburb}" /></td>
-                </tr>
-                <tr>
-                    <td>State</td>
-                    <td>
-                        <select th:field="*{state}">
-                            <option value="NSW">NSW</option>
-                            <option value="VIC">VIC</option>
-                            <option value="QLD">QLD</option>
-                            <option value="ACT">ACT</option>
-                            <option value="SA">SA</option>
-                            <option value="WA">WA</option>
-                            <option value="NT">NT</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Postcode</td>
-                    <td><input type="text" th:field="*{postcode}" /></td>
-                </tr>
-            </tbody>
-        </table>
-        <button type="submit">Register</button>
+
+        <div class="mb-3 w-50">
+            <label class="form-label" for="first-name">First name</label>
+            <input id="first-name" class="form-control" type="text" th:field="*{firstName}" />
+        </div>
+
+        <div class="mb-3 w-50">
+            <label class="form-label" for="surname">Surname</label>
+            <input id="surname" class="form-control" type="text" th:field="*{surname}" />
+        </div>
+
+        <div class="mb-3 w-50">
+            <label class="form-label" for="dob">Date of birth</label>
+            <input id="dob" class="form-control" type="date" th:field="*{dateOfBirth}" />
+        </div>
+
+        <div class="mb-3 w-50">
+            <label class="form-label" for="phone">Phone</label>
+            <input id="phone" class="form-control" type="tel" th:field="*{phoneNbr}" />
+        </div>
+
+        <div class="mb-3 w-50">
+            <label class="form-label" for="email">Email</label>
+            <input id="email" class="form-control" type="email" th:field="*{emailAddress}" />
+        </div>
+
+        <div class="mb-3 w-50">
+            <label class="form-label" for="street">Street</label>
+            <input id="street" class="form-control" type="text" th:field="*{street}" />
+        </div>
+
+        <div class="mb-3 w-50">
+            <label class="form-label" for="suburb">Suburb</label>
+            <input id="suburb" class="form-control" type="text" th:field="*{suburb}" />
+        </div>
+
+        <div class="mb-3 w-50">
+            <label class="form-label" for="state">State</label>
+            <select id="state" class="form-select" th:field="*{state}">
+                <option value="NSW">NSW</option>
+                <option value="VIC">VIC</option>
+                <option value="QLD">QLD</option>
+                <option value="ACT">ACT</option>
+                <option value="SA">SA</option>
+                <option value="WA">WA</option>
+                <option value="NT">NT</option>
+            </select>
+        </div>
+
+        <div class="mb-3 w-50">
+            <label class="form-label" for="postcode">Postcode</label>
+            <input id="postcode" class="form-control" type="text" th:field="*{postcode}" />
+        </div>
+
+        <div class="mb-3 w-50">
+            <button class="btn btn-primary" type="submit">Register</button>
+        </div>
     </form>
 </body>
 </html>
