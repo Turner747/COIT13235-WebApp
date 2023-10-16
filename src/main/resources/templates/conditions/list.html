@@ -6,11 +6,11 @@
 </head>
 <body layout:fragment="body" >
 <h1>Condition List</h1>
-<table>
+<table class="table table-striped">
     <thead>
     <th>ID</th>
-    <th>Doctor</th>
     <th>Patient</th>
+    <th>Doctor</th>
     <th>Diagnosis</th>
     <th>Notes</th>
     <th>Diagnosis Date</th>
@@ -19,12 +19,12 @@
     <tbody>
     <tr th:each="condition:${allConditions}">
         <td th:text="${condition.id}"></td>
-        <<td th:text="${condition.patient?.firstName + ' ' + appointment.patient?.surname}"></td>
-        <td th:text="${condition.staff?.firstName + ' ' + appointment.staff?.lastName}"></td>
+        <td th:text="${condition.patient?.firstName + ' ' + condition.patient?.surname}"></td>
+        <td th:text="${condition.doctor?.firstName + ' ' + condition.doctor?.lastName}"></td>
         <td th:text="${condition.diagnosis}"></td>
         <td th:text="${condition.notes}"></td>
-        <td th:text="${#dates.format(patient.diagnosisDate, 'dd-MM-yyyy') }"></td>
-        <td><a th:href="@{/conditions/update/{id}(id=${condition.id})}">Update</a></td>
+        <td th:text="${#dates.format(condition.diagnosisDate, 'dd-MM-yyyy') }"></td>
+        <td><a class="btn btn-warning m-1" th:href="@{/conditions/update/{id}(id=${condition.id})}">Update</a></td>
     </tr>
     </tbody>
 </table>
