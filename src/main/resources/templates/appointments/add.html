@@ -32,7 +32,7 @@
             <td>
                 <select th:field="*{patient.id}">
                     <option th:each="patientOption:${allPatients}" th:value="${patientOption.id}"
-                            th:text="${patientOption.firstName + ' ' + patientOption.lastName}"></option>
+                            th:text="${patientOption.firstName + ' ' + patientOption.surname}"></option>
                 </select>
             </td>
         </tr>

@@ -5,7 +5,7 @@
     <title>Doctors and Shifts</title>
 </head>
 <body layout:fragment="body" >
-<h1>Doctors and Shift list</h1>
+<h1>Select the doctor and shift</h1>
 <table>
     <thead>
     <th>ID</th>
@@ -30,7 +30,7 @@
         <td th:text="${shift.staff?.email}"></td>
         <td th:text="${shift.staff?.providerNumber}"></td>
         <td th:text="${shift.staff?.prescriberNumber}"></td>
-        <td><a th:href="@{/appointments/add/{id}(id=${shift.id})}">Select</a></td>
+        <td><a class="btn btn-warning m-1" th:href="@{/appointments/add/{id}(id=${shift.id})}">Select</a></td>
     </tr>
     </tbody>
 </table>

@@ -6,7 +6,12 @@
 </head>
 <body layout:fragment="body" >
 <h1>Appointments list</h1>
-<table>
+
+<a class="btn btn-primary m-1" th:href="@{/appointments/select-doctor}">
+    Add Appointment
+</a>
+
+<table class="table table-striped">
     <thead>
     <th>ID</th>
     <th>Patient</th>
@@ -19,12 +24,12 @@
     <tbody>
     <tr th:each="appointment:${allAppointments}">
         <td th:text="${appointment.id}"></td>
-        <td th:text="${appointment.patient?.firstName + ' ' + appointment.patient?.lastName}"></td>
+        <td th:text="${appointment.patient?.firstName + ' ' + appointment.patient?.surname}"></td>
         <td th:text="${appointment.doctor?.firstName + ' ' + appointment.doctor?.lastName}"></td>
         <td th:text="${#dates.format(appointment.startTime, 'dd-MM-yyyy HH:mm') }"></td>
         <td th:text="${#dates.format(appointment.finishTime, 'dd-MM-yyyy HH:mm') }"></td>
         <td th:text="${appointment.status}"></td>
-        <td><a th:href="@{/appointments/update/{id}(id=${appointment.id})}">Update</a></td>
+        <td><a class="btn btn-warning m-1" th:href="@{/appointments/update/{id}(id=${appointment.id})}">Update</a></td>
     </tr>
     </tbody>
 </table>
