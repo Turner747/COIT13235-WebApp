@@ -57,6 +57,7 @@ public class OptimedUserDetailsService implements UserDetailsService {
     private List<String> getPrivileges(RoleResponse role) {
         List<String> privileges = new ArrayList<>();
         RoleResponse roleResponse = ObjectMapper.map(staffClient.getRoleByName(role.getName()).getBody(), RoleResponse.class);
+        privileges.add(role.getName());
         for(PrivilegeResponse p: roleResponse.getPrivileges())
             privileges.add(p.getName());
         return privileges;

@@ -81,6 +81,12 @@ public class StaffController {
         return "staffs/update";
     }
 
+    @GetMapping("delete/{id}")
+    public String deleteStaff(@PathVariable("id") long id) {
+        staffClient.deleteStaffById(id);
+        return "redirect:/staffs";
+    }
+
     @GetMapping
     public String listStaff(Model model) {
         model.addAttribute("allStaffs",

@@ -6,22 +6,27 @@
 </head>
 <body layout:fragment="body" >
     <h1>Staff list</h1>
-    <table>
+
+    <a class="btn btn-primary m-1" th:href="@{/staffs/register}">
+        Add Staff
+    </a>
+
+    <table class="table table-striped">
         <thead>
-            <th>ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>DOB</th>
-            <th>Street</th>
-            <th>Suburb</th>
-            <th>State</th>
-            <th>Postcode</th>
-            <th>Phone</th>
-            <th>Email</th>
-            <th>Provider No.</th>
-            <th>Prescriber No.</th>
-            <th>Role</th>
-            <th>Option</th>
+            <th scope="col">ID</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">DOB</th>
+            <th scope="col">Street</th>
+            <th scope="col">Suburb</th>
+            <th scope="col">State</th>
+            <th scope="col">Postcode</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Email</th>
+            <th scope="col">Provider No.</th>
+            <th scope="col">Prescriber No.</th>
+            <th scope="col">Role</th>
+            <th scope="col">Options</th>
         </thead>
         <tbody>
             <tr th:each="staff:${allStaffs}">
@@ -39,7 +44,10 @@
                 <td th:text="${staff.prescriberNumber}"></td>
 
                 <td th:text="${staff.role?.name}"></td>
-                <td><a th:href="@{/staffs/update/{id}(id=${staff.id})}">Update</a></td>
+                <td>
+                    <a class="btn btn-warning" th:href="@{/staffs/update/id/{id}(id=${staff.id})}">Update</a>
+                    <a class="btn btn-danger" th:href="@{/staffs/delete/{id}(id=${staff.id})}">Delete</a>
+                </td>
             </tr>
         </tbody>
     </table>

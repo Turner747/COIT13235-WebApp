@@ -40,4 +40,6 @@ public interface StaffClient {
     public ResponseEntity<ShiftResponse> deleteShiftById(@PathVariable("id") long id);
     @GetMapping(value = "restapi/shifts/staff/{id}")
     public ResponseEntity<Collection<ShiftResponse>> getShiftByStaffId(@PathVariable("id") long id);
+    @GetMapping(value = "restapi/staffs/delete/{id}")
+    public ResponseEntity<StaffResponse> deleteStaffById(@PathVariable("id") long id);
 }
