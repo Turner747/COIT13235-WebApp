@@ -13,15 +13,15 @@
                 <td>Patient</td>
                 <td>
                     <select th:field="*{patient.id}">
-                        <option th:each="patientOption:${allPatients}" th:value="${patientOption.id}" th:text="${patientOption.firstName + ' ' + patientOption.lastName}"></option>
+                        <option th:each="patientOption:${allPatients}" th:value="${patientOption.id}" th:text="${patientOption.firstName + ' ' + patientOption.surname}"></option>
                     </select>
                 </td>
             </tr>
             <tr>
                 <td>Doctor</td>
                 <td>
-                    <select th:field="*{staff.id}">
-                        <option th:each="staffOption:${allStaffs}" th:value="${staffOption.id}" th:text="${staffOption.firstName + ' ' + staffOption.lastName}"></option>
+                    <select th:field="*{doctor.id}">
+                        <option th:each="doctorOption:${allDoctors}" th:value="${doctorOption.id}" th:text="${doctorOption.firstName + ' ' + doctorOption.lastName}"></option>
                     </select>
                 </td>
             </tr>
@@ -31,7 +31,7 @@
             </tr>
             <tr>
                 <td>Notes</td>
-                <td><input type="text" th:field="*{notes}" /> </td>
+                <td><textarea th:field="*{notes}" rows="5" cols="50" > </textarea></td>
             </tr>
             <tr>
                 <td>Diagnosis Date</td>
@@ -39,7 +39,7 @@
             </tr>
         </tbody>
     </table>
-    <button type="submit" >Add</button>
+    <button class="btn btn-primary m-1" type="submit" >Add</button>
 </form>
 </body>
 </html>

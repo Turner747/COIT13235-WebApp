@@ -10,6 +10,7 @@ import com.optimed.webapp.response.StaffResponse;
 import com.optimed.webapp.response.VisitNoteResponse;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,7 @@ public class ConditionController {
             model.addAttribute("errorMessage",e.getMessage());
             return "errors/visit-note-error"; // something needs fixing here
         }
-        return "redirect:/visit-notes";
+        return "redirect:/conditions";
     }
     
     @GetMapping("/add/{id}")
@@ -54,28 +55,19 @@ public class ConditionController {
         return "conditions/add";
     }
     
-    @GetMapping("/select-doctor")
-    public String selectDoctor(Model model) {
+    @GetMapping("/add")
+    public String addConditions(Model model) {
+        List<PatientResponse> patients = ObjectMapper.mapAll(patientClient.getAllPatients().getBody(), PatientResponse.class);
+        Collections.sort(patients);
         List<StaffResponse> doctors = ObjectMapper.mapAll(staffClient.getAllDoctors().getBody(), StaffResponse.class);
         Collections.sort(doctors);
-        //List<ShiftResponse> shifts = new ArrayList<ShiftResponse>();
-        //for(StaffResponse doctor : doctors) {
-        //    shifts.addAll( ObjectMapper.mapAll(staffClient.getShiftByStaffId(doctor.getId()).getBody(), ShiftResponse.class) );
-        //}
-        //model.addAttribute("allShifts", shifts);
-        return "conditions/select-doctor";
-    }
-    
-    @GetMapping("/select-patient")
-    public String selectPatient(Model model) {
-        List<PatientResponse> patients = ObjectMapper.mapAll(patientClient.getAllPatients().getBody(), PatientResponse.class);
-        //Collections.sort(patients);
-        //List<ShiftResponse> shifts = new ArrayList<ShiftResponse>();
-        //for(StaffResponse doctor : doctors) {
-        //    shifts.addAll( ObjectMapper.mapAll(staffClient.getShiftByStaffId(doctor.getId()).getBody(), ShiftResponse.class) );
-        //}
-       // model.addAttribute("allShifts", shifts);
-        return "conditions/select-patient";
+
+        ConditionResponse condition = new ConditionResponse();
+        condition.setDiagnosisDate(new Date());
+        model.addAttribute("allPatients", patients);
+        model.addAttribute("allDoctors", doctors);
+        model.addAttribute("conditionDetail", condition);
+        return "conditions/add";
     }
     
     @GetMapping("/update/{id}")
