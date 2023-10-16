@@ -63,7 +63,7 @@
 
         <div class="mb-3 w-50">
             <label class="form-label" for="password">Password</label>
-            <input class="form-control" id="password" type="password" th:field="${password}" />
+            <input class="form-control" id="password" type="password" th:field="*{password.password}" />
         </div>
 
         <div class="mb-3 w-50">

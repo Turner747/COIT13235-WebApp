@@ -20,7 +20,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Controller
-@RequestMapping("/visit-notes")
+@RequestMapping("/visitnotes")
 public class VisitNoteController {
     
     @Autowired
@@ -40,7 +40,7 @@ public class VisitNoteController {
         Collection<StaffResponse> doctors = ObjectMapper.mapAll(staffClient.getAllStaffs().getBody(), StaffResponse.class);
         model.addAttribute("allDoctors", doctors);
         
-        return "visit-notes/add";
+        return "visitnotes/add";
     }
     
     @PostMapping(value = "/save", consumes = "*/*")
@@ -50,9 +50,9 @@ public class VisitNoteController {
             patientClient.saveVisitNote(visitNote);
         } catch(Exception e) {
             model.addAttribute("errorMessage",e.getMessage());
-            return "errors/visit-note-error"; // something needs fixing here
+            return "errors/visitnote-error"; // something needs fixing here
         }
-        return "redirect:/visit-notes";
+        return "redirect:/visitnotes";
     }
     
     /*
@@ -93,7 +93,7 @@ public class VisitNoteController {
         Collection<StaffResponse> doctors = ObjectMapper.mapAll(staffClient.getAllStaffs().getBody(), StaffResponse.class);
         model.addAttribute("allDoctors", doctors);
         
-        return "visit-notes/update";
+        return "visitnotes/update";
     }
     
     @GetMapping("delete/{id}")
@@ -106,6 +106,6 @@ public class VisitNoteController {
     public String listVisitNotes(Model model) {
         model.addAttribute("allVisitNotes",
                 ObjectMapper.mapAll(patientClient.getAllVisitNotes().getBody(), VisitNoteResponse.class));
-        return ("visit-notes/list");
+        return ("visitnotes/list");
     }
 }

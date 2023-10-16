@@ -53,12 +53,10 @@ public class StaffController {
     }
     @PostMapping(value = "/save-new", consumes = "*/*")
     public String saveNewStaff(@ModelAttribute("staff") StaffResponse staff,
-                            @ModelAttribute("password") String password,
                             Model model) {
         try {
-            PasswordResponse pwd = new PasswordResponse();
-            pwd.setPassword(passwordEncoder.encode(password.trim()));
-            staff.setPassword(pwd);
+            String pwd = passwordEncoder.encode(staff.getPassword().getPassword());
+            staff.getPassword().setPassword(pwd);
             staffClient.saveStaff(staff);
         } catch(Exception e) {
             model.addAttribute("errorMessage",e.getMessage());

@@ -6,24 +6,31 @@
 </head>
 <body layout:fragment="body" >
 <h1>Visit Notes List</h1>
-<table>
+
+<a class="btn btn-primary m-1" th:href="@{/visitnotes/add}">
+    Add Visit
+</a>
+
+<table class="table table-striped">
     <thead>
-    <th>ID</th>
-    <th>Doctor</th>
-    <th>Patient</th>
-    <th>Content</th>
-    <th>Visit Date</th>
-    <th>Option</th>
+    <th scope="col">ID</th>
+    <th scope="col">Doctor</th>
+    <th scope="col">Patient</th>
+    <th scope="col">Content</th>
+    <th scope="col">Visit Date</th>
+    <th scope="col">Option</th>
     </thead>
     <tbody>
     <tr th:each="visitNote:${allVisitNotes}">
-        <td th:text="${visitNote:$.id}"></td>
+        <td th:text="${visitNote.id}"></td>
         <td th:text="${visitNote.doctor?.firstName + ' ' + visitNote.doctor?.lastName}"></td>
-        <<td th:text="${visitNote.patient?.id}"></td>
+        <td th:text="${visitNote.patient?.firstName + ' ' + visitNote.patient?.surname}"></td>
         <td th:text="${visitNote.content}"></td>
-        <td th:text="${#dates.format(patient.visitDate, 'dd-MM-yyyy') }"></td>
-        <td><a th:href="@{/visit-notes/update/{id}(id=${visitNote.id})}">Update</a></td>
-        <td><a th:href="@{/visit-notes/delete/{id}(id=${visitNote.id})}">Delete</a></td>
+        <td th:text="${#dates.format(visitNote.visitDate, 'dd-MM-yyyy') }"></td>
+        <td>
+            <a class="btn btn-warning" th:href="@{/visit-notes/update/{id}(id=${visitNote.id})}">Update</a>
+            <a class="btn btn-danger" th:href="@{/visit-notes/delete/{id}(id=${visitNote.id})}">Delete</a>
+        </td>
     </tr>
     </tbody>
 </table>
